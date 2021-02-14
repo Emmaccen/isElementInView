@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to know if an element is visible in viewport</title>
+    <style>
+      body {
+        margin: 0 10px 10px 20px;
+      }
+      h1 {
+        color: red;
+        text-align: center;
+      }
+      .block {
+        display: inline-block;
+        background-color: #128238;
+        margin: 30px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .value {
+        color: whitesmoke;
+      }
+      #element {
+        height: 30vh;
+        background-color: #6388;
+        margin: 30px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      span {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How to know if an element is visible in viewport</h1>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div id="element">
+      <h2>MY ELEMENT</h2>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+    <div class="block">
+      <h1 class="value">Hello</h1>
+    </div>
+
+    <script>
+      window.onload = () => {
+        const myElement = document.querySelectorAll(".value");
+        window.addEventListener("scroll", () => {
+          const {
+            height,
+            left,
+            right,
+            top,
+            bottom,
+            width,
+            x,
+            y,
+          } = document.getElementById("element").getBoundingClientRect();
+          // console.log(bottom, height, left, right, top, width, x, y);
+          myElement.forEach((element) => {
+            element.innerHTML = `
+            <div>
+              <span>height : ${height}</span>
+              <span>left : ${left}</span>
+              <span>right : ${right}</span>
+              <span>top : ${top}</span>
+              <span>bottom : ${bottom}</span>
+              <span>width : ${width}</span>
+              <span>x : ${x}</span>
+              <span>y : ${y}</span>
+            </div>
+            `;
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
